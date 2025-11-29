@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { createPublicClient, http } from 'viem'
-import { baseSepoliaChain } from '@/components/providers'
+import { monadTestnet } from '@/components/providers'
 import { PREDICTION_ADDRESS, PREDICTION_ABI } from '@/lib/prediction-contract'
 
 export function useRoundConfig() {
@@ -21,8 +21,8 @@ export function useRoundConfig() {
     const contractAddress = PREDICTION_ADDRESS as `0x${string}`
 
     const publicClient = createPublicClient({
-      chain: baseSepoliaChain,
-      transport: http('https://sepolia.base.org'),
+      chain: monadTestnet,
+      transport: http('https://testnet-rpc.monad.xyz'),
     })
 
     const fetchConfig = async () => {

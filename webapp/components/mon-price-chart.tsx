@@ -1,9 +1,15 @@
+
+
+
+
+
+
 "use client"
 
 import { useEffect, useState, useRef } from 'react'
 import { LineChart, Line, ResponsiveContainer, YAxis, XAxis, Tooltip, ReferenceLine } from 'recharts'
 
-interface EthPriceChartProps {
+interface MonPriceChartProps {
   currentPrice: number | null
   lockPrice: number | null
 }
@@ -13,7 +19,7 @@ interface PriceDataPoint {
   price: number
 }
 
-export default function MonPriceChart({ currentPrice, lockPrice }: EthPriceChartProps) {
+export default function MonPriceChart({ currentPrice, lockPrice }: MonPriceChartProps) {
   const [priceHistory, setPriceHistory] = useState<PriceDataPoint[]>([])
   const priceRef = useRef<number | null>(null)
   const initRef = useRef(false)
@@ -66,10 +72,10 @@ export default function MonPriceChart({ currentPrice, lockPrice }: EthPriceChart
       <div className="w-full h-full flex items-center justify-center">
         <div className="text-center">
           <p className="text-black opacity-50 text-sm">
-            {!currentPrice ? 'Loading ETH price...' : 'Initializing chart...'}
+            {!currentPrice ? 'Loading MONAD price...' : 'Initializing chart...'}
           </p>
           <p className="text-black opacity-30 text-xs mt-1">
-            {currentPrice ? `Current: $${currentPrice.toFixed(2)}` : 'Fetching from Chainlink oracle'}
+            {currentPrice ? `Current: $${currentPrice.toFixed(2)}` : 'Fetching price data'}
           </p>
         </div>
       </div>

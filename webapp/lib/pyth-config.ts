@@ -9,7 +9,7 @@
 
 // Pyth contract addresses on Base
 export const PYTH_CONTRACT_ADDRESSES = { 
-  MONAD_TESTNET: '0xad2B52D2af1a9bD5c561894Cdd84f7505e1CD0B5',
+  MONAD_TESTNET: '0x2880aB155794e7179c9eE2e38200202908C17B43',
 } as const
 
 // Hermes API endpoint (public - consider using a private endpoint in production)
@@ -26,7 +26,7 @@ export interface TokenConfig {
 
 // Pyth Price Feed IDs (universal across all chains)
 export const PYTH_PRICE_FEED_IDS = {
-  MON_USD: '0xe786153cc54abd4b0e53b4c246d54d9f8eb3f3b5a34d4fc5a2e9a423b0ba5d6b', 
+  MON_USD: '0x31491744e2dbf6df7fcf4ac0820d18a609b49076d45066d3568424e62f686cd1', 
 } as const
 
 // Supported tokens configuration
