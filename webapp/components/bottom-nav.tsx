@@ -63,7 +63,7 @@ export default function BottomNav() {
         />
       </button>
       <button
-        onClick={() => router.push("/ai")}
+        onClick={() => router.push("/leaderboard")}
         className={`p-3 sm:p-4 rounded-full transition ${
           pathname === "/leaderboard" ? "bg-yellow-400" : "hover:bg-gray-100"
         }`}
