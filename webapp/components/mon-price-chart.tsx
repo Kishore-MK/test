@@ -13,7 +13,7 @@ interface PriceDataPoint {
   price: number
 }
 
-export default function EthPriceChart({ currentPrice, lockPrice }: EthPriceChartProps) {
+export default function MonPriceChart({ currentPrice, lockPrice }: EthPriceChartProps) {
   const [priceHistory, setPriceHistory] = useState<PriceDataPoint[]>([])
   const priceRef = useRef<number | null>(null)
   const initRef = useRef(false)
