@@ -49,11 +49,11 @@ export default function LeaderboardPage() {
         height: viewportHeight ? `${viewportHeight}px` : '100vh',
         backgroundColor: '#27262c',
       }}
-      >
-        <div
-          className="w-full max-w-md md:max-w-xl mx-auto relative"
-          style={{
-            height: '100%',
+    >
+      <div
+        className="w-full max-w-md md:max-w-xl mx-auto relative"
+        style={{
+          height: '100%',
           paddingTop: 'env(safe-area-inset-top, 0px)',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         }}
@@ -116,7 +116,7 @@ export default function LeaderboardPage() {
                       <span className="text-right">{entry.gamesPlayed}</span>
                       <span className="text-right">{entry.wins}</span>
                       <span className="text-right">{entry.roi.toFixed(1)}%</span>
-                      <span className="text-right">{entry.volume.toFixed(2)} ETH</span>
+                      <span className="text-right">{entry.volume.toFixed(4)} USD</span>
                     </div>
                   ))
                 )}

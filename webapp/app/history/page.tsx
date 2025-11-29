@@ -105,9 +105,8 @@ export default function History() {
                   >
                     <div className="flex justify-between items-start mb-2">
                       <div>
-                        <span className={`font-bold text-lg ${
-                          bet.direction === 'bull' ? 'text-green-400' : 'text-red-400'
-                        }`}>
+                        <span className={`font-bold text-lg ${bet.direction === 'bull' ? 'text-green-400' : 'text-red-400'
+                          }`}>
                           {bet.direction === 'bull' ? '📈 BULL' : '📉 BEAR'}
                         </span>
                         <p className="text-sm text-gray-400">Round #{bet.epoch}</p>
@@ -121,11 +120,11 @@ export default function History() {
                         </p>
                       </div>
                     </div>
-                    
+
                     {bet.lockPrice && bet.closePrice && (
                       <div className="text-xs text-gray-400 mt-2 space-y-1">
-                        <p>Lock: ${bet.lockPrice.toFixed(2)}</p>
-                        <p>Close: ${bet.closePrice.toFixed(2)}</p>
+                        <p>Lock: ${bet.lockPrice.toFixed(6)}</p>
+                        <p>Close: ${bet.closePrice.toFixed(6)}</p>
                         {bet.payout && (
                           <p className="text-green-400">
                             Payout: {formatAmount(bet.payout)}
@@ -133,11 +132,11 @@ export default function History() {
                         )}
                       </div>
                     )}
-                    
+
                     <p className="text-xs text-gray-500 mt-2">
                       {formatDate(bet.timestamp)}
                     </p>
-                    
+
                     {bet.txHash && (
                       <p className="text-xs text-blue-400 mt-1 truncate">
                         Tx: {bet.txHash}
