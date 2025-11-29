@@ -554,7 +554,7 @@ export default function MarketCard({ marketName, onSwipeComplete, hasSwipedThisR
                 <div className="mb-4 sm:mb-5">
                   <p className="text-black text-xs sm:text-sm opacity-75 mb-1">CURRENT ROUND {currentEpoch ? `#${currentEpoch}` : ''}</p>
                   <p className="text-black font-bold text-2xl sm:text-3xl">
-                    {roundData ? (Number(roundData.totalAmount) / 1e18).toFixed(4) : '0.0000'} ETH
+                    {roundData ? (Number(roundData.totalAmount) / 1e18).toFixed(4) : '0.0000'} MON
                   </p>
                   <p className="text-black text-xs sm:text-sm opacity-60">PRIZE POOL</p>
                 </div>

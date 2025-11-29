@@ -147,7 +147,7 @@ export class KeeperService {
 
             // Check operator balance
             const balance = await this.getOperatorBalance();
-            this.logger.info(`Operator balance: ${balance} ETH`);
+            this.logger.info(`Operator balance: ${balance} MON`);
 
             if (parseFloat(balance) < 0.01) {
                 this.logger.warn('Low operator balance! Please top up.');
