@@ -67,14 +67,20 @@ export function usePythPrice(tokenSymbol: keyof typeof SUPPORTED_TOKENS): UsePyt
 
         const priceData = priceUpdates.parsed[0].price
 
+        // Debug: Log raw values
+        console.log(`🔍 Raw Pyth data for ${tokenSymbol}:`)
+        console.log(`   price: ${priceData.price}`)
+        console.log(`   expo: ${priceData.expo}`)
+        console.log(`   conf: ${priceData.conf}`)
+
         // Convert price based on exponent
-        // Pyth prices are returned as price * 10^expo
-        // For example: price=180523, expo=-2 means actual price is 1805.23
-        const formattedPrice = Number(priceData.price)  
+        // Pyth prices are returned as: actual_price = price * 10^expo
+        // For example: price=36875992, expo=-9 means actual price is 0.036875992
+        const formattedPrice = Number(priceData.price) * Math.pow(10, priceData.expo)
         const formattedConf = Number(priceData.conf) * Math.pow(10, priceData.expo)
 
-        console.log(`✅ ${tokenSymbol}/USD: $${formattedPrice}`)
-        console.log(`   Confidence: ±$${formattedConf.toFixed(2)}`)
+        console.log(`✅ ${tokenSymbol}/USD: $${formattedPrice.toFixed(8)}`)
+        console.log(`   Confidence: ±$${formattedConf.toFixed(8)}`)
         console.log(`   Publish Time: ${new Date(priceData.publish_time * 1000).toLocaleTimeString()}`)
 
         setPrice(formattedPrice)

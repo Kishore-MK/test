@@ -4,7 +4,7 @@ import { ArrowUp, ArrowDown } from "lucide-react"
 import { useState, useRef, useEffect, useMemo } from "react"
 import { usePriceWithFallback } from "@/hooks/usePriceWithFallback"
 import { useCurrentRound } from "@/hooks/useCurrentRound"
-import { SUPPORTED_TOKENS } from "@/lib/pyth-config" 
+import { SUPPORTED_TOKENS } from "@/lib/pyth-config"
 import { monadTestnet } from "./providers"
 import MonPriceChart from "./mon-price-chart"
 
@@ -133,7 +133,7 @@ export default function MarketCard({ marketName, onSwipeComplete, hasSwipedThisR
           audioRef.current.play().then(() => {
             audioRef.current?.pause()
             audioRef.current!.currentTime = 0
-          }).catch(() => {})
+          }).catch(() => { })
         }
         // Resume audio context on iOS
         if (audioContextRef.current?.state === 'suspended') {
@@ -256,7 +256,7 @@ export default function MarketCard({ marketName, onSwipeComplete, hasSwipedThisR
             // Retry once on mobile
             setTimeout(() => {
               if (audioRef.current) {
-                audioRef.current.play().catch(() => {})
+                audioRef.current.play().catch(() => { })
               }
             }, 100)
           })
@@ -439,8 +439,8 @@ export default function MarketCard({ marketName, onSwipeComplete, hasSwipedThisR
               transition: isTopCard && (isDragging && !isMagnetized)
                 ? 'none'
                 : isTopCard && isMagnetized
-                ? 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                : 'all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  ? 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                  : 'all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)',
               zIndex: 10 - index,
               opacity: opacity,
               cursor: isTopCard ? (isSwipeBlocked ? 'not-allowed' : (isDragging ? 'grabbing' : 'grab')) : 'default',
@@ -450,151 +450,151 @@ export default function MarketCard({ marketName, onSwipeComplete, hasSwipedThisR
             onMouseUp={isTopCard ? handleDragEnd : undefined}
             onMouseLeave={isTopCard ? handleDragEnd : undefined}
             onTouchStart={isTopCard ? (e) => handleDragStart(e.touches[0].clientX) : undefined}
-        onTouchMove={isTopCard ? (e) => handleDragMove(e.touches[0].clientX) : undefined}
-        onTouchEnd={isTopCard ? handleDragEnd : undefined}
-      >
-        {showInactivePopup && (
-          <div className="absolute inset-0 z-[20] flex items-center justify-center pointer-events-none">
-            <div className="bg-black/80 backdrop-blur-sm rounded-2xl px-6 py-5 mx-4 border border-yellow-400/60 text-center">
-              <p className="text-yellow-400 font-bold text-xl sm:text-2xl">Waiting for next round</p>
-              <p className="text-yellow-100 opacity-80 text-sm mt-2">Rounds are not open yet. Please wait for the next start.</p>
+            onTouchMove={isTopCard ? (e) => handleDragMove(e.touches[0].clientX) : undefined}
+            onTouchEnd={isTopCard ? handleDragEnd : undefined}
+          >
+            {showInactivePopup && (
+              <div className="absolute inset-0 z-[20] flex items-center justify-center pointer-events-none">
+                <div className="bg-black/80 backdrop-blur-sm rounded-2xl px-6 py-5 mx-4 border border-yellow-400/60 text-center">
+                  <p className="text-yellow-400 font-bold text-xl sm:text-2xl">Waiting for next round</p>
+                  <p className="text-yellow-100 opacity-80 text-sm mt-2">Rounds are not open yet. Please wait for the next start.</p>
+                </div>
+              </div>
+            )}
+
+            {/* Header Spacer */}
+            <div
+              className="mb-4 sm:mb-6"
+              style={{
+                height: 'calc(3rem + env(safe-area-inset-top, 0px))',
+              }}
+            />
+
+            {/* Wallet Value */}
+            <div className="mb-4 sm:mb-6">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                <p className="text-black opacity-90 text-3xl sm:text-4xl md:text-5xl">{marketName}/USD</p>
+                {source && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-black bg-opacity-10 text-black opacity-60">
+                    {source === 'pyth' ? '⚡ Pyth' : '🔗 Chainlink'}
+                  </span>
+                )}
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black">
+                {isPriceLoading ? (
+                  <span className="opacity-50">Loading...</span>
+                ) : priceError ? (
+                  <span className="opacity-50 text-lg">Error loading price</span>
+                ) : price !== null ? (
+                  `$${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 6 })}`
+                ) : (
+                  <span className="opacity-50">--</span>
+                )}
+              </h2>
             </div>
-          </div>
-        )}
 
-        {/* Header Spacer */}
-        <div
-          className="mb-4 sm:mb-6"
-          style={{
-            height: 'calc(3rem + env(safe-area-inset-top, 0px))',
-          }}
-        />
-
-        {/* Wallet Value */}
-        <div className="mb-4 sm:mb-6">
-          <div className="flex items-center gap-2 mb-1 sm:mb-2">
-            <p className="text-black opacity-90 text-3xl sm:text-4xl md:text-5xl">{marketName}/USD</p>
-            {source && (
-              <span className="text-xs px-2 py-0.5 rounded-full bg-black bg-opacity-10 text-black opacity-60">
-                {source === 'pyth' ? '⚡ Pyth' : '🔗 Chainlink'}
-              </span>
-            )}
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black">
-            {isPriceLoading ? (
-              <span className="opacity-50">Loading...</span>
-            ) : priceError ? (
-              <span className="opacity-50 text-lg">Error loading price</span>
-            ) : price !== null ? (
-              `$${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-            ) : (
-              <span className="opacity-50">--</span>
-            )}
-          </h2>
-        </div>
-
-        {/* Time Period Selector */}
+            {/* Time Period Selector */}
 
 
-        {/* Chart Area */}
-        <div className="flex-1 mb-4 sm:mb-6 relative">
-          {isSupported ? (
-            <MonPriceChart currentPrice={price} lockPrice={lockPrice} />
-          ) : (
-            <>
-              <div className="absolute inset-0 flex items-end justify-center gap-0.5">
-                {Array.from({ length: 60 }).map((_, i) => {
-                  const height = (Math.sin(i / 10) * 30 + 40).toFixed(2)
-                  return (
-                    <div
-                      key={i}
-                      className="flex-1 bg-yellow-500 opacity-60 rounded-t"
-                      style={{
-                        height: `${height}%`,
-                      }}
+            {/* Chart Area */}
+            <div className="flex-1 mb-4 sm:mb-6 relative">
+              {isSupported ? (
+                <MonPriceChart currentPrice={price} lockPrice={lockPrice} />
+              ) : (
+                <>
+                  <div className="absolute inset-0 flex items-end justify-center gap-0.5">
+                    {Array.from({ length: 60 }).map((_, i) => {
+                      const height = (Math.sin(i / 10) * 30 + 40).toFixed(2)
+                      return (
+                        <div
+                          key={i}
+                          className="flex-1 bg-yellow-500 opacity-60 rounded-t"
+                          style={{
+                            height: `${height}%`,
+                          }}
+                          suppressHydrationWarning
+                        />
+                      )
+                    })}
+                  </div>
+                  {/* Trend line */}
+                  <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                    <polyline
+                      points={Array.from({ length: 60 })
+                        .map((_, i) => {
+                          const y = (100 - (Math.sin(i / 10) * 30 + 40)).toFixed(2)
+                          const x = ((i / 59) * 100).toFixed(2)
+                          return `${x}% ${y}%`
+                        })
+                        .join(" ")}
+                      fill="none"
+                      stroke="rgba(0, 0, 0, 0.8)"
+                      strokeWidth="2"
                       suppressHydrationWarning
                     />
-                  )
-                })}
-              </div>
-              {/* Trend line */}
-              <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-                <polyline
-                  points={Array.from({ length: 60 })
-                    .map((_, i) => {
-                      const y = (100 - (Math.sin(i / 10) * 30 + 40)).toFixed(2)
-                      const x = ((i / 59) * 100).toFixed(2)
-                      return `${x}% ${y}%`
-                    })
-                    .join(" ")}
-                  fill="none"
-                  stroke="rgba(0, 0, 0, 0.8)"
-                  strokeWidth="2"
-                  suppressHydrationWarning
-                />
-              </svg>
-            </>
-          )}
-        </div>
-
-        {/* Profit/Loss Info */}
-        <div
-          className="bg-yellow-500 rounded-xl sm:rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6 relative overflow-hidden"
-        >
-          {/* Timer Overlay - Fills from left to right over 2 minutes */}
-          <div
-            className="absolute inset-0 bg-black pointer-events-none transition-all duration-75 ease-linear"
-            style={{
-              width: `${timerProgress}%`,
-              opacity: 0.15,
-            }}
-          />
-
-          <div className="relative z-10">
-            <div className="mb-4 sm:mb-5">
-              <p className="text-black text-xs sm:text-sm opacity-75 mb-1">CURRENT ROUND {currentEpoch ? `#${currentEpoch}` : ''}</p>
-              <p className="text-black font-bold text-2xl sm:text-3xl">
-                {roundData ? (Number(roundData.totalAmount) / 1e18).toFixed(4) : '0.0000'} ETH
-              </p>
-              <p className="text-black text-xs sm:text-sm opacity-60">PRIZE POOL</p>
+                  </svg>
+                </>
+              )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4 sm:gap-6">
-              <div>
-                <p className="text-black text-xs sm:text-sm opacity-75 mb-1">Down (Bear)</p>
-                <p className="font-bold text-3xl sm:text-4xl" style={{ color: '#ed4b9e' }}>
-                  {roundData && roundData.bearAmount > BigInt(0) && roundData.totalAmount > BigInt(0)
-                    ? ((Number(roundData.totalAmount) * 0.97) / Math.max(Number(roundData.bearAmount), 1)).toFixed(2)
-                    : '0.00'}x
-                </p>
-                <p className="text-black text-[10px] sm:text-xs opacity-60">
-                  {roundData ? (Number(roundData.bearAmount) / 1e18).toFixed(4) : '0.0000'} ETH
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="text-black text-xs sm:text-sm opacity-75 mb-1">Up (Bull)</p>
-                <p className="font-bold text-3xl sm:text-4xl" style={{ color: '#2e8656' }}>
-                  {roundData && roundData.bullAmount > BigInt(0) && roundData.totalAmount > BigInt(0)
-                    ? ((Number(roundData.totalAmount) * 0.97) / Math.max(Number(roundData.bullAmount), 1)).toFixed(2)
-                    : '0.00'}x
-                </p>
-                <p className="text-black text-[10px] sm:text-xs opacity-60">
-                  {roundData ? (Number(roundData.bullAmount) / 1e18).toFixed(4) : '0.0000'} ETH
-                </p>
+            {/* Profit/Loss Info */}
+            <div
+              className="bg-yellow-500 rounded-xl sm:rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6 relative overflow-hidden"
+            >
+              {/* Timer Overlay - Fills from left to right over 2 minutes */}
+              <div
+                className="absolute inset-0 bg-black pointer-events-none transition-all duration-75 ease-linear"
+                style={{
+                  width: `${timerProgress}%`,
+                  opacity: 0.15,
+                }}
+              />
+
+              <div className="relative z-10">
+                <div className="mb-4 sm:mb-5">
+                  <p className="text-black text-xs sm:text-sm opacity-75 mb-1">CURRENT ROUND {currentEpoch ? `#${currentEpoch}` : ''}</p>
+                  <p className="text-black font-bold text-2xl sm:text-3xl">
+                    {roundData ? (Number(roundData.totalAmount) / 1e18).toFixed(4) : '0.0000'} ETH
+                  </p>
+                  <p className="text-black text-xs sm:text-sm opacity-60">PRIZE POOL</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                  <div>
+                    <p className="text-black text-xs sm:text-sm opacity-75 mb-1">Down (Bear)</p>
+                    <p className="font-bold text-3xl sm:text-4xl" style={{ color: '#ed4b9e' }}>
+                      {roundData && roundData.bearAmount > BigInt(0) && roundData.totalAmount > BigInt(0)
+                        ? ((Number(roundData.totalAmount) * 0.97) / Math.max(Number(roundData.bearAmount), 1)).toFixed(2)
+                        : '0.00'}x
+                    </p>
+                    <p className="text-black text-[10px] sm:text-xs opacity-60">
+                      {roundData ? (Number(roundData.bearAmount) / 1e18).toFixed(4) : '0.0000'} ETH
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-black text-xs sm:text-sm opacity-75 mb-1">Up (Bull)</p>
+                    <p className="font-bold text-3xl sm:text-4xl" style={{ color: '#2e8656' }}>
+                      {roundData && roundData.bullAmount > BigInt(0) && roundData.totalAmount > BigInt(0)
+                        ? ((Number(roundData.totalAmount) * 0.97) / Math.max(Number(roundData.bullAmount), 1)).toFixed(2)
+                        : '0.00'}x
+                    </p>
+                    <p className="text-black text-[10px] sm:text-xs opacity-60">
+                      {roundData ? (Number(roundData.bullAmount) / 1e18).toFixed(4) : '0.0000'} ETH
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Recent Transaction */}
+            {/* Recent Transaction */}
 
 
-        {/* Bottom Navigation Spacer */}
-        <div
-          style={{
-            height: 'calc(5.5rem + env(safe-area-inset-bottom, 0px))',
-          }}
-        />
+            {/* Bottom Navigation Spacer */}
+            <div
+              style={{
+                height: 'calc(5.5rem + env(safe-area-inset-bottom, 0px))',
+              }}
+            />
           </div>
         )
       })}

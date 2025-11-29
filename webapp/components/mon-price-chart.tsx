@@ -46,7 +46,7 @@ export default function MonPriceChart({ currentPrice, lockPrice }: MonPriceChart
         })
       }
 
-      console.log('📈 Chart initialized at $' + priceRef.current.toFixed(2))
+      console.log('📈 Chart initialized at $' + priceRef.current.toFixed(6))
       setPriceHistory(initialData)
     }, 500)
 
@@ -58,7 +58,7 @@ export default function MonPriceChart({ currentPrice, lockPrice }: MonPriceChart
         if (prev.length === 0) return prev
         return [...prev, { time: Date.now(), price: priceRef.current! }].slice(-60)
       })
-      console.log(`📊 Updated: $${priceRef.current.toFixed(2)}`)
+      console.log(`📊 Updated: $${priceRef.current.toFixed(6)}`)
     }, 5000)
 
     return () => {
@@ -75,7 +75,7 @@ export default function MonPriceChart({ currentPrice, lockPrice }: MonPriceChart
             {!currentPrice ? 'Loading MONAD price...' : 'Initializing chart...'}
           </p>
           <p className="text-black opacity-30 text-xs mt-1">
-            {currentPrice ? `Current: $${currentPrice.toFixed(2)}` : 'Fetching price data'}
+            {currentPrice ? `Current: $${currentPrice.toFixed(6)}` : 'Fetching price data'}
           </p>
         </div>
       </div>
